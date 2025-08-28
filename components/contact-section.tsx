@@ -7,7 +7,7 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { MapPin, Phone, Mail, Instagram, Twitter, Facebook } from "lucide-react"
+import { MapPin, Phone, Mail, Instagram } from "lucide-react"
 import { useLanguage } from "./language-context"
 
 export function ContactSection() {
@@ -18,6 +18,7 @@ export function ContactSection() {
     message: "",
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [showSuccess, setShowSuccess] = useState(false)
   const sectionRef = useRef<HTMLElement>(null)
   const { t } = useLanguage()
 
@@ -42,15 +43,32 @@ export function ContactSection() {
     e.preventDefault()
     setIsSubmitting(true)
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000))
+    try {
+      // Submit form using FormSubmit
+      const formData = new FormData(e.target as HTMLFormElement)
+      
+      const response = await fetch('https://formsubmit.co/Abdallah_al-sairafi@hotmail.com', {
+        method: 'POST',
+        body: formData
+      })
 
-    // Reset form
-    setFormData({ name: "", email: "", message: "" })
-    setIsSubmitting(false)
+      if (response.ok) {
+        // Show success message
+        setShowSuccess(true)
+        
+        // Reset form
+        setFormData({ name: "", email: "", message: "" })
 
-    // Show success message (you can implement toast here)
-    alert("Message sent successfully!")
+        // Hide success message after 4 seconds
+        setTimeout(() => {
+          setShowSuccess(false)
+        }, 4000)
+      }
+    } catch (error) {
+      console.error('Form submission error:', error)
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -63,13 +81,13 @@ export function ContactSection() {
   return (
     <>
       {/* Curved Top Divider */}
-      <div className="relative">
+      <div className="relative overflow-hidden">
         <svg viewBox="0 0 1200 120" className="w-full h-20 fill-white">
           <path d="M0,0 C300,60 900,60 1200,0 L1200,120 L0,120 Z" />
         </svg>
       </div>
 
-      <section ref={sectionRef} id="contact" className="py-20 md:py-28 bg-gray-50">
+      <section ref={sectionRef} id="contact" className="py-20 md:py-28 bg-gray-50 overflow-x-clip">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16" data-aos="fade-up">
             <h2
@@ -87,8 +105,29 @@ export function ContactSection() {
               className={`transition-all duration-800 ${isVisible ? "animate-fade-in-left opacity-100" : "opacity-0"}`}
               data-aos="fade-right"
             >
-              <div className="glass-card rounded-2xl p-8">
+              <div className="glass-card rounded-2xl p-8 relative">
+                {/* Success Message Overlay */}
+                {showSuccess && (
+                  <div className="absolute inset-0 bg-white/95 backdrop-blur-sm rounded-2xl flex items-center justify-center z-10 animate-fade-in">
+                    <div className="text-center p-8">
+                      <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg className="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                      </div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-2">شكراً لتواصلك معنا!</h3>
+                      <p className="text-gray-600 mb-4">تم إرسال رسالتك بنجاح وسنتواصل معك قريباً</p>
+                      <div className="w-12 h-1 bg-teal-500 rounded mx-auto"></div>
+                    </div>
+                  </div>
+                )}
+
                 <form onSubmit={handleSubmit} className="space-y-6">
+                  {/* Hidden FormSubmit fields */}
+                  <input type="hidden" name="_captcha" value="false" />
+                  <input type="hidden" name="_next" value="https://your-website.com/thank-you" />
+                  <input type="hidden" name="_subject" value="رسالة جديدة من موقع مستوصف بود الصحي" />
+
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
                       {t("formName")}
@@ -100,7 +139,7 @@ export function ContactSection() {
                       required
                       value={formData.name}
                       onChange={handleChange}
-                      className="w-full rounded-xl border-gray-300 focus:border-teal-500 focus:ring-teal-500"
+                      className="w-full rounded-xl border-gray-300 focus:border-teal-500 focus:ring-teal-500 text-black placeholder-gray-500 dark:text-black dark:placeholder-gray-400"
                     />
                   </div>
 
@@ -115,7 +154,7 @@ export function ContactSection() {
                       required
                       value={formData.email}
                       onChange={handleChange}
-                      className="w-full rounded-xl border-gray-300 focus:border-teal-500 focus:ring-teal-500"
+                      className="w-full rounded-xl border-gray-300 focus:border-teal-500 focus:ring-teal-500 text-black placeholder-gray-500 dark:text-black dark:placeholder-gray-400"
                     />
                   </div>
 
@@ -130,7 +169,7 @@ export function ContactSection() {
                       required
                       value={formData.message}
                       onChange={handleChange}
-                      className="w-full rounded-xl border-gray-300 focus:border-teal-500 focus:ring-teal-500 resize-none"
+                      className="w-full rounded-xl border-gray-300 focus:border-teal-500 focus:ring-teal-500 resize-none text-black placeholder-gray-500 dark:text-black dark:placeholder-gray-400"
                     />
                   </div>
 
@@ -139,7 +178,7 @@ export function ContactSection() {
                     disabled={isSubmitting}
                     className="w-full bg-teal-500 hover:bg-teal-600 text-white font-semibold py-3 rounded-xl transition-colors duration-300"
                   >
-                    {isSubmitting ? "Sending..." : t("formSend")}
+                    {isSubmitting ? "جاري الإرسال..." : t("formSend")}
                   </Button>
                 </form>
               </div>
@@ -157,10 +196,18 @@ export function ContactSection() {
                     <div>
                       <h3 className="font-semibold text-gray-900 mb-1">Location</h3>
                       <p className="text-gray-600">
-                        Riyadh, Saudi Arabia
+                        مستوصف بود الصحي - السالميه قطعه 1 شارع 2
                         <br />
-                        الرياض، المملكة العربية السعودية
+                        POD Health Clinic - Salmiya Block 1 Street 2
                       </p>
+                      <a 
+                        href="https://maps.app.goo.gl/cz48X1gYTtnthCe38" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-teal-500 hover:text-teal-600 text-sm mt-2 inline-block"
+                      >
+                        View on Google Maps
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -170,7 +217,14 @@ export function ContactSection() {
                     <Phone className="h-6 w-6 text-teal-500 mt-1 flex-shrink-0" />
                     <div>
                       <h3 className="font-semibold text-gray-900 mb-1">Phone</h3>
-                      <p className="text-gray-600">+966 XX XXX XXXX</p>
+                      <a 
+                        href="https://wa.me/96566656024" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-gray-600 hover:text-teal-500 transition-colors"
+                      >
+                        +965 66656024
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -180,7 +234,12 @@ export function ContactSection() {
                     <Mail className="h-6 w-6 text-teal-500 mt-1 flex-shrink-0" />
                     <div>
                       <h3 className="font-semibold text-gray-900 mb-1">Email</h3>
-                      <p className="text-gray-600">info@podclinic.com</p>
+                      <a 
+                        href="mailto:Abdallah_al-sairafi@hotmail.com" 
+                        className="text-gray-600 hover:text-teal-500 transition-colors"
+                      >
+                        Abdallah_al-sairafi@hotmail.com
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -189,15 +248,14 @@ export function ContactSection() {
                 <div className="glass-card rounded-2xl p-6">
                   <h3 className="font-semibold text-gray-900 mb-4">Follow Us</h3>
                   <div className="flex space-x-4 rtl:space-x-reverse">
-                    <Button variant="ghost" size="sm" className="text-gray-600 hover:text-teal-500">
-                      <Instagram className="h-5 w-5" />
-                    </Button>
-                    <Button variant="ghost" size="sm" className="text-gray-600 hover:text-teal-500">
-                      <Twitter className="h-5 w-5" />
-                    </Button>
-                    <Button variant="ghost" size="sm" className="text-gray-600 hover:text-teal-500">
-                      <Facebook className="h-5 w-5" />
-                    </Button>
+                    <a 
+                      href="https://www.instagram.com/pod.lab.kw/" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-gray-700 hover:text-white transition-all p-2.5 rounded-xl hover:bg-teal-500 ring-1 ring-gray-200 hover:ring-teal-500 hover:shadow-md"
+                    >
+                      <Instagram className="h-6 w-6" />
+                    </a>
                   </div>
                 </div>
               </div>
@@ -209,7 +267,7 @@ export function ContactSection() {
       {/* Footer */}
       <footer className="bg-gray-900 text-white relative">
         {/* Curved Top Border */}
-        <div className="absolute top-0 left-0 right-0">
+        <div className="absolute top-0 left-0 right-0 overflow-hidden">
           <svg viewBox="0 0 1200 60" className="w-full h-15 fill-teal-500">
             <path d="M0,60 C300,20 900,20 1200,60 L1200,0 L0,0 Z" />
           </svg>
@@ -243,18 +301,16 @@ export function ContactSection() {
 
                 {/* Social icons */}
                 <div className="flex items-center gap-4 text-gray-300">
-                  <a aria-label="Instagram" href="#" className="hover:text-white transition-colors"><Instagram className="h-5 w-5" /></a>
-                  <a aria-label="Twitter" href="#" className="hover:text-white transition-colors"><Twitter className="h-5 w-5" /></a>
-                  <a aria-label="Facebook" href="#" className="hover:text-white transition-colors"><Facebook className="h-5 w-5" /></a>
+                  <a aria-label="Instagram" href="https://www.instagram.com/pod.lab.kw/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors"><Instagram className="h-6 w-6" /></a>
                 </div>
 
                 {/* Contact line */}
                 <div className="text-gray-400 text-sm">
-                  <span>Riyadh, Saudi Arabia</span>
+                  <span>مستوصف بود الصحي - السالميه</span>
                   <span className="mx-2">•</span>
-                  <a href="tel:+966000000000" className="hover:text-white transition-colors">+966 XX XXX XXXX</a>
+                  <a href="https://wa.me/96566656024" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">+965 66656024</a>
                   <span className="mx-2">•</span>
-                  <a href="mailto:info@podclinic.com" className="hover:text-white transition-colors">info@podclinic.com</a>
+                  <a href="mailto:Abdallah_al-sairafi@hotmail.com" className="hover:text-white transition-colors">Abdallah_al-sairafi@hotmail.com</a>
                 </div>
               </div>
 

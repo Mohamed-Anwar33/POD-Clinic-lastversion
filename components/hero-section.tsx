@@ -46,7 +46,7 @@ export function HeroSection() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center" data-aos="zoom-in" data-aos-delay="200">
             <Button
-              onClick={() => scrollToSection("contact")}
+              onClick={() => window.open("https://wa.me/96566656024?text=مرحباً، أريد حجز موعد في مستوصف بود الصحي", "_blank")}
               size="lg"
               className="bg-gradient-to-r from-teal-500 to-green-500 hover:from-teal-600 hover:to-green-600 text-white font-semibold px-8 py-4 rounded-2xl shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105 text-lg"
             >
@@ -67,8 +67,8 @@ export function HeroSection() {
       </div>
 
       {/* Curved Bottom Divider */}
-      <div className="absolute bottom-0 left-0 right-0">
-        <svg viewBox="0 0 1200 120" className="w-full h-20 fill-white">
+      <div className="absolute bottom-0 left-0 right-0 overflow-hidden">
+        <svg viewBox="0 0 1200 120" className="block w-full h-20 fill-white">
           <path d="M0,120 C300,60 900,60 1200,120 L1200,120 L0,120 Z" />
         </svg>
       </div>

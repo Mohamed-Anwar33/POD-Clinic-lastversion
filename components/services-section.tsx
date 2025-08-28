@@ -3,7 +3,6 @@
 import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
-import { Activity, Heart, Zap, Package } from "lucide-react"
 import { useLanguage } from "./language-context"
 import { ChevronLeft, ChevronRight, Play, X } from "lucide-react"
 
@@ -35,28 +34,24 @@ export function ServicesSection() {
   const services = [
     {
       id: "vo2",
-      icon: Activity,
       color: "from-red-500 to-orange-500",
       image: "/assets/vo2-1.png",
       data: t("vo2") || {},
     },
     {
       id: "rmr",
-      icon: Heart,
       color: "from-blue-500 to-cyan-500",
       image: "/assets/rmr-3.png",
       data: t("rmr") || {},
     },
     {
       id: "fit3d",
-      icon: Zap,
       color: "from-purple-500 to-pink-500",
       image: "/assets/fit3d-1.png",
       data: t("fit3d") || {},
     },
     {
       id: "complete",
-      icon: Package,
       color: "from-green-500 to-teal-500",
       image: "/assets/vo2-1.png",
       data: t("complete") || {},
@@ -82,13 +77,13 @@ export function ServicesSection() {
   return (
     <>
       {/* Curved Top Divider */}
-      <div className="relative">
-        <svg viewBox="0 0 1200 120" className="w-full h-20 fill-teal-500">
+      <div className="relative overflow-hidden">
+        <svg viewBox="0 0 1200 120" className="block w-full h-20 fill-teal-500">
           <path d="M0,0 C300,60 900,60 1200,0 L1200,0 L0,0 Z" />
         </svg>
       </div>
 
-      <section ref={sectionRef} id="services" className="py-20 md:py-28 bg-white relative">
+      <section ref={sectionRef} id="services" className="py-20 md:py-28 bg-white relative overflow-x-clip">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16" data-aos="fade-up">
             <h2
@@ -102,7 +97,6 @@ export function ServicesSection() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {services.map((service, index) => {
-              const Icon = service.icon
               return (
                 <div
                   key={service.id}
@@ -118,26 +112,14 @@ export function ServicesSection() {
                     setShowVideo(false)
                   }}
                 >
-                  <div className="glass-card rounded-2xl overflow-hidden h-full hover:scale-105 hover:shadow-2xl hover:shadow-teal-500/20 transition-all duration-500 cursor-pointer">
+                  <div className="glass-card rounded-2xl overflow-hidden h-full md:hover:scale-105 hover:shadow-2xl hover:shadow-teal-500/20 transition-all duration-500 cursor-pointer">
                     {/* Service Image */}
-                    <div className="relative h-48 overflow-hidden bg-gray-50">
+                    <div className="relative h-48 overflow-hidden bg-white">
                       <img
                         src={service.image || "/placeholder.svg"}
                         alt={service.data.title}
                         className="w-full h-full object-contain transition-transform duration-500"
                       />
-                      <div
-                        className={`absolute inset-0 bg-gradient-to-t ${service.color} opacity-20 group-hover:opacity-30 transition-opacity duration-500`}
-                      />
-
-                      {/* Icon overlay */}
-                      <div className="absolute top-4 right-4">
-                        <div
-                          className={`w-12 h-12 rounded-xl bg-gradient-to-br ${service.color} flex items-center justify-center shadow-lg`}
-                        >
-                          <Icon className="h-6 w-6 text-white" />
-                        </div>
-                      </div>
                     </div>
 
                     {/* Content */}
@@ -317,7 +299,10 @@ export function ServicesSection() {
 
                 {/* CTA Button */}
                 <div className="pt-4 sm:pt-6 border-t border-gray-100 sticky bottom-0 bg-white">
-                  <Button className="w-full bg-gradient-to-r from-teal-500 to-green-500 hover:from-teal-600 hover:to-green-600 text-white font-semibold py-3 sm:py-4 text-base sm:text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer">
+                  <Button 
+                    onClick={() => window.open(`https://wa.me/96566656024?text=مرحباً، أريد حجز موعد لخدمة ${selectedServiceData.data.title} في مستوصف بود الصحي`, "_blank")}
+                    className="w-full bg-gradient-to-r from-teal-500 to-green-500 hover:from-teal-600 hover:to-green-600 text-white font-semibold py-3 sm:py-4 text-base sm:text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+                  >
                     {t("ctaBook")} - {selectedServiceData.data.title}
                   </Button>
                 </div>

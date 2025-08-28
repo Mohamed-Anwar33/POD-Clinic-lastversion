@@ -11,9 +11,9 @@ import { ContactSection } from "@/components/contact-section"
 export default function Home() {
   return (
     <LanguageProvider>
-      <div className="min-h-screen">
+      <div className="min-h-screen overflow-x-clip">
         <Navbar />
-        <main>
+        <main className="overflow-x-clip">
           <HeroSection />
           <ServicesSection />
           <ExpertsSection />

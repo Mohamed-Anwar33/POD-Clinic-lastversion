@@ -45,7 +45,7 @@ export function ExpertsSection() {
   return (
     <>
       {/* Curved Top Divider */}
-      <div className="relative">
+      <div className="relative overflow-hidden">
         <svg viewBox="0 0 1200 120" className="w-full h-20 fill-gradient-to-r from-blue-900 to-teal-600">
           <defs>
             <linearGradient id="expertGradient" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -105,7 +105,7 @@ export function ExpertsSection() {
                         loading="lazy"
                       />
                     </div>
-                    <div className="absolute -bottom-4 -right-4 bg-teal-500 text-white rounded-full p-4 shadow-lg">
+                    <div className="absolute -bottom-4 right-0 md:-right-4 bg-teal-500 text-white rounded-full p-4 shadow-lg">
                       <div className="text-center">
                         <div className={`text-2xl font-bold ${isVisible ? "animate-count-up" : ""}`}>{count}+</div>
                         <div className="text-xs">Tests</div>

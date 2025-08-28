@@ -78,7 +78,7 @@ export function TestimonialsSection() {
       }}
     >
       {/* Curved Top Divider */}
-      <div className="absolute top-0 left-0 right-0">
+      <div className="absolute top-0 left-0 right-0 overflow-hidden">
         <svg viewBox="0 0 1200 120" className="w-full h-20 fill-teal-500">
           <path d="M0,0 C300,60 900,60 1200,0 L1200,0 L0,0 Z" />
         </svg>
