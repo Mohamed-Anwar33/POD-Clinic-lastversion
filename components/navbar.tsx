@@ -38,7 +38,7 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20 md:h-24">
           <div className="flex-shrink-0">
-            <a href="#hero" aria-label={t("brand")}>
+            <a href="#hero" aria-label={t("brand")} className="cursor-pointer">
               <Image
                 src="/assets/logo pod.png"
                 alt={t("brand")}
@@ -59,7 +59,7 @@ export function Navbar() {
                   )}
                   <button
                     onClick={() => scrollToSection(key === "home" ? "hero" : key)}
-                    className={`px-2 ps-4 whitespace-nowrap text-sm font-medium transition-colors hover:text-teal-500 ${
+                    className={`px-2 ps-4 whitespace-nowrap text-sm font-medium transition-colors hover:text-teal-500 cursor-pointer ${
                       isScrolled ? "text-gray-700" : "text-white"
                     }`}
                   >
@@ -75,7 +75,7 @@ export function Navbar() {
               variant="ghost"
               size="sm"
               onClick={toggleLanguage}
-              className={`${isScrolled ? "text-gray-700" : "text-white"}`}
+              className={`cursor-pointer ${isScrolled ? "text-gray-700" : "text-white"}`}
             >
               <Globe className="h-4 w-4 mr-2 rtl:mr-0 rtl:ml-2" />
               {language === "en" ? "العربية" : "English"}
@@ -83,14 +83,14 @@ export function Navbar() {
 
             <Button
               onClick={() => scrollToSection("contact")}
-              className="bg-teal-500 hover:bg-white hover:text-teal-700 text-white font-semibold px-6 py-2 rounded-2xl shadow-lg transition-all duration-300 hover:shadow-xl animate-pulse-glow"
+              className="bg-teal-500 hover:bg-white hover:text-teal-700 text-white font-semibold px-6 py-2 rounded-2xl shadow-lg transition-all duration-300 hover:shadow-xl animate-pulse-glow cursor-pointer"
             >
               {t("ctaBook")}
             </Button>
 
             {/* Mobile menu toggle */}
             <button
-              className={`md:hidden p-2 rounded-lg transition-colors ${isScrolled ? "text-gray-700 hover:bg-gray-100" : "text-white hover:bg-white/10"}`}
+              className={`md:hidden p-2 rounded-lg transition-colors cursor-pointer ${isScrolled ? "text-gray-700 hover:bg-gray-100" : "text-white hover:bg-white/10"}`}
               onClick={() => setMobileOpen((v) => !v)}
               aria-label="Toggle menu"
             >
@@ -111,7 +111,7 @@ export function Navbar() {
             <button
               key={key}
               onClick={() => scrollToSection(key === "home" ? "hero" : key)}
-              className={`block w-full text-left px-3 py-2 rounded-lg text-sm font-medium ${
+              className={`block w-full text-left px-3 py-2 rounded-lg text-sm font-medium cursor-pointer ${
                 isScrolled ? "text-gray-800 hover:bg-gray-100" : "text-white hover:bg-white/10"
               }`}
             >

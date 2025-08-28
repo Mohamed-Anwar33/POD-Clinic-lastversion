@@ -106,19 +106,14 @@ export function ServicesSection() {
               return (
                 <div
                   key={service.id}
-                  className={`relative group cursor-pointer transition-all duration-500 ${
+                  className={`relative group cursor-pointer transition-all duration-500 hover:cursor-pointer ${
                     isVisible ? "animate-fade-in-right opacity-100" : "opacity-0"
                   }`}
                   style={{ animationDelay: `${index * 120}ms` }}
                   data-aos="fade-up"
                   data-aos-delay={index * 100}
-                  onClick={() => {
-                    setSelectedService(service.id)
-                    setCurrentImageIndex(0)
-                    setShowVideo(false)
-                  }}
                 >
-                  <div className="glass-card rounded-2xl overflow-hidden h-full hover:scale-105 hover:shadow-2xl hover:shadow-teal-500/20 transition-all duration-500">
+                  <div className="glass-card rounded-2xl overflow-hidden h-full hover:scale-105 hover:shadow-2xl hover:shadow-teal-500/20 transition-all duration-500 cursor-pointer">
                     {/* Service Image */}
                     <div className="relative h-48 overflow-hidden bg-gray-50">
                       <img
@@ -154,7 +149,7 @@ export function ServicesSection() {
                       <Button
                         variant="outline"
                         size="sm"
-                        className="w-full border-teal-500 text-teal-600 hover:bg-teal-500 hover:text-white transition-colors duration-300 bg-transparent"
+                        className="w-full border-teal-500 text-teal-600 hover:bg-teal-500 hover:text-white transition-colors duration-300 bg-transparent cursor-pointer"
                       >
                         {t("learnMore")}
                       </Button>
@@ -178,7 +173,7 @@ export function ServicesSection() {
                   </DialogTitle>
                   <button
                     onClick={() => setSelectedService(null)}
-                    className="flex-shrink-0 p-2 hover:bg-gray-100 rounded-full transition-colors duration-200"
+                    className="flex-shrink-0 p-2 hover:bg-gray-100 rounded-full transition-colors duration-200 cursor-pointer"
                   >
                     <X className="h-5 w-5 text-gray-500 hover:text-gray-700" />
                   </button>
@@ -201,13 +196,13 @@ export function ServicesSection() {
                         <>
                           <button
                             onClick={prevImage}
-                            className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-1.5 sm:p-2 rounded-full transition-all duration-300 hover:scale-110"
+                            className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-1.5 sm:p-2 rounded-full transition-all duration-300 hover:scale-110 cursor-pointer"
                           >
                             <ChevronLeft className="h-4 w-4 sm:h-5 sm:w-5" />
                           </button>
                           <button
                             onClick={nextImage}
-                            className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-1.5 sm:p-2 rounded-full transition-all duration-300 hover:scale-110"
+                            className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-1.5 sm:p-2 rounded-full transition-all duration-300 hover:scale-110 cursor-pointer"
                           >
                             <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5" />
                           </button>
@@ -218,7 +213,7 @@ export function ServicesSection() {
                               <button
                                 key={index}
                                 onClick={() => setCurrentImageIndex(index)}
-                                className={`w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full transition-all duration-300 ${
+                                className={`w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
                                   index === currentImageIndex ? "bg-white scale-125" : "bg-white/50 hover:bg-white/75"
                                 }`}
                               />
@@ -236,7 +231,7 @@ export function ServicesSection() {
                     <div className="flex items-center justify-between">
                       <h4 className="font-semibold text-gray-900 text-sm sm:text-base">{t("watchDemo")}</h4>
                       {showVideo && (
-                        <button onClick={() => setShowVideo(false)} className="text-gray-500 hover:text-gray-700 p-1">
+                        <button onClick={() => setShowVideo(false)} className="text-gray-500 hover:text-gray-700 p-1 cursor-pointer">
                           <X className="h-4 w-4 sm:h-5 sm:w-5" />
                         </button>
                       )}
@@ -245,7 +240,7 @@ export function ServicesSection() {
                     {!showVideo ? (
                       <button
                         onClick={() => setShowVideo(true)}
-                        className="relative w-full h-32 sm:h-40 md:h-48 bg-gray-100 rounded-xl overflow-hidden group hover:bg-gray-200 transition-colors"
+                        className="relative w-full h-32 sm:h-40 md:h-48 bg-gray-100 rounded-xl overflow-hidden group hover:bg-gray-200 transition-colors cursor-pointer"
                       >
                         <div className="absolute inset-0 flex items-center justify-center">
                           <div className="bg-red-600 hover:bg-red-700 text-white p-3 sm:p-4 rounded-full group-hover:scale-110 transition-transform">
@@ -317,7 +312,7 @@ export function ServicesSection() {
 
                 {/* CTA Button */}
                 <div className="pt-4 sm:pt-6 border-t border-gray-100 sticky bottom-0 bg-white">
-                  <Button className="w-full bg-gradient-to-r from-teal-500 to-green-500 hover:from-teal-600 hover:to-green-600 text-white font-semibold py-3 sm:py-4 text-base sm:text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                  <Button className="w-full bg-gradient-to-r from-teal-500 to-green-500 hover:from-teal-600 hover:to-green-600 text-white font-semibold py-3 sm:py-4 text-base sm:text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer">
                     {t("ctaBook")} - {selectedServiceData.data.title}
                   </Button>
                 </div>

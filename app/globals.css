@@ -242,6 +242,72 @@ html {
   transform: translateY(0) translateX(0) scale(1);
 }
 
+/* Cursor styles for interactive elements */
+.cursor-pointer {
+  cursor: pointer;
+}
+
+/* Interactive element cursor styles */
+button,
+[role="button"],
+.cursor-pointer,
+a,
+[onclick],
+[data-clickable],
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+select,
+.clickable {
+  cursor: pointer !important;
+}
+
+/* Specific cursor styles for different states */
+button:disabled,
+[aria-disabled="true"] {
+  cursor: not-allowed !important;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="tel"],
+input[type="url"],
+input[type="search"],
+textarea {
+  cursor: text !important;
+}
+
+/* Hover states with pointer cursor */
+.hover\:cursor-pointer:hover {
+  cursor: pointer !important;
+}
+
+/* Navigation and menu cursor styles */
+nav a,
+nav button,
+.nav-link,
+.menu-item {
+  cursor: pointer !important;
+}
+
+/* Card and service item cursor styles */
+.glass-card,
+.service-card,
+[data-service],
+.expert-card {
+  cursor: pointer !important;
+}
+
+/* Dialog and modal control cursor styles */
+.dialog-close,
+.modal-close,
+[data-dialog-close],
+.image-nav-button {
+  cursor: pointer !important;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
