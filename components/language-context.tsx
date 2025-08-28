@@ -54,7 +54,6 @@ const translations = {
         "Comprehensive performance report",
         "Personalized training and nutrition recommendations",
       ],
-      bonus: "Save 25% compared to individual tests",
       note: "The most comprehensive fitness assessment available - perfect for serious athletes and fitness enthusiasts.",
       images: ["/assets/vo2-1.png", "/assets/rmr-1.jpg", "/assets/fit3d-1.png"],
       youtubeUrl: "https://www.youtube.com/watch?v=complete-package-demo",
