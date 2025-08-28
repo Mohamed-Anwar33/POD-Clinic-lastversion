@@ -112,6 +112,11 @@ export function ServicesSection() {
                   style={{ animationDelay: `${index * 120}ms` }}
                   data-aos="fade-up"
                   data-aos-delay={index * 100}
+                  onClick={() => {
+                    setSelectedService(service.id)
+                    setCurrentImageIndex(0)
+                    setShowVideo(false)
+                  }}
                 >
                   <div className="glass-card rounded-2xl overflow-hidden h-full hover:scale-105 hover:shadow-2xl hover:shadow-teal-500/20 transition-all duration-500 cursor-pointer">
                     {/* Service Image */}
