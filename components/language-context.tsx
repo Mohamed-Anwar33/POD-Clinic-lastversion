@@ -29,11 +29,11 @@ const translations = {
     idealFor: "Ideal for:",
     importantNote: "Important Note:",
     fit3d: {
-      title: "Fit3D Body Composition & Shape",
+      title: "Fit3D 3D Body Composition",
       desc: "The new standard for body composition. Get accurate 3D body measurements, composition analysis, and posture assessment in minutes.",
       bullets: [
         "Complete body measurements and composition (fat mass, muscle mass)",
-        "3D body shape design and visualization",
+        "3D body scan and visualization",
         "Posture and balance assessment",
         "Precise progress tracking with comparison tools",
         "Free InBody scan included",
@@ -42,6 +42,7 @@ const translations = {
       note: "All data goes directly to your personal account on the device website. The center has no access to your private data.",
       images: ["/assets/fit3d-1.png", "/assets/fit3d-2.jpg", "/assets/fit3d-3.jpg"],
       youtubeUrl: "https://www.youtube.com/watch?v=fit3d-demo",
+      instagramUrl: "https://www.instagram.com/reel/DODnMpCiOSa/",
     },
     complete: {
       title: "All Tests Package\n(Vo2Max + RMR + InBody + Fit3d)",
@@ -75,6 +76,7 @@ const translations = {
       bonus: "Body composition test included (InBody)",
       images: ["/assets/vo2-1.png", "/assets/vo2-2.png", "/assets/vo2-3.png"],
       youtubeUrl: "https://www.youtube.com/watch?v=vo2max-demo",
+      instagramUrl: "https://www.instagram.com/reel/DODhayFiGWf/",
     },
     rmr: {
       title: "Resting Metabolic Rate (RMR)",
@@ -87,6 +89,7 @@ const translations = {
       aud: "Those with hormonal imbalances, Non-responders to standard diets (don't always get results), High muscle mass individuals (bodybuilders), Anyone with health conditions or differences that make standard equations ineffective",
       images: ["/assets/rmr-1.jpg", "/assets/rmr-2.png", "/assets/rmr-3.png"],
       youtubeUrl: "https://www.youtube.com/watch?v=rmr-demo",
+      instagramUrl: "https://www.instagram.com/reel/DODks9PiEsO/",
     },
     inbody: {
       title: "Body Composition (InBody)",
@@ -125,19 +128,20 @@ const translations = {
     idealFor: "تزداد أهمية الاختبار للفئات التالية:",
     importantNote: "ملاحظة هامة:",
     fit3d: {
-      title: "Fit3D قياس مكونات وشكل الجسم ثلاثي الأبعاد",
-      desc: "المعيار الجديد لقياس مكونات وأبعاد الجسم. خلال دقائق سيحصل العميل على جميع قياسات ومكونات الجسم وتصميم ثلاثي الأبعاد لشكل الجسم وتقييم للتوازن والقوام.",
+      title: "قياس مكونات الجسم ثلاثي الأبعاد Fit3D",
+      desc: "المعيار الجديد لقياس مكونات وأبعاد الجسم. خلال دقائق سيحصل العميل على جميع قياسات ومكونات الجسم وتقييم للتوازن والقوام.",
       bullets: [
         "جميع قياسات ومكونات الجسم (كتلة الدهون، العضلات)",
-        "تصميم ثلاثي الأبعاد لشكل الجسم",
+        "تصوير ثلاثي الأبعاد للجسم",
         "تقييم للتوازن والقوام",
-        "مقارنة وتتبع التطور بشكل دقيق للغاية",
+        "مقارنة وتتبع التطور بدقة عالية جدًا",
         "قياس على جهاز InBody مجاناً",
       ],
       bonus: "غرفة خاصة بالجهاز - مراعاة خصوصية المعلومات مكفولة",
-      note: "يتم القياس بشكل منفرد من قبل العميل (لا حاجة للمساعدة) وجميع البيانات تصل للعميل من خلال حسابه الشخصي وليس للمركز أي بيانات خاصة بالعملاء.",
+      note: "يتم القياس بصورة منفردة من قبل العميل (لا حاجة للمساعدة) وجميع البيانات تصل للعميل من خلال حسابه الشخصي وليس للمركز أي بيانات خاصة بالعملاء.",
       images: ["/assets/fit3d-1.png", "/assets/fit3d-2.jpg", "/assets/fit3d-3.jpg"],
       youtubeUrl: "https://www.youtube.com/watch?v=fit3d-demo",
+      instagramUrl: "https://www.instagram.com/reel/DODnMpCiOSa/",
     },
     complete: {
       title: "باقة كل الاختبارات\n(Vo2Max + RMR + InBody + Fit3d)",
@@ -171,6 +175,7 @@ const translations = {
       bonus: "قياس مكونات الجسم مجاناً (InBody)",
       images: ["/assets/vo2-1.png", "/assets/vo2-2.png", "/assets/vo2-3.png"],
       youtubeUrl: "https://www.youtube.com/watch?v=vo2max-demo",
+      instagramUrl: "https://www.instagram.com/reel/DODhayFiGWf/",
     },
     rmr: {
       title: "اختبار معدل الأيض أثناء الراحة (RMR)",
@@ -183,6 +188,7 @@ const translations = {
       aud: "من لديهم اختلالات هرمونية، الذين لا يستجيبون للأنظمة الغذائية الاعتيادية (لا يحصلون على نتائج دائماً)، ذوو الكتلة العضلية الكبيرة (لاعبو بناء الأجسام)، وجميع الأشخاص الذين لديهم اختلافات أو حالات صحية تجعل المعادلات العامة غير فعّالة في الوصول إلى نتائج مناسبة لهم",
       images: ["/assets/rmr-1.jpg", "/assets/rmr-2.png", "/assets/rmr-3.png"],
       youtubeUrl: "https://www.youtube.com/watch?v=rmr-demo",
+      instagramUrl: "https://www.instagram.com/reel/DODks9PiEsO/",
     },
     inbody: {
       title: "قياس مكونات الجسم (InBody)",

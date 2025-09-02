@@ -82,7 +82,7 @@ export function Navbar() {
             </Button>
 
             <Button
-              onClick={() => window.open("https://wa.me/96566656024?text=مرحباً، أريد حجز موعد في مستوصف بود الصحي", "_blank")}
+              onClick={() => window.open("https://wa.me/96560002122?text=مرحباً، أريد حجز موعد في مستوصف بود الصحي", "_blank")}
               className="bg-teal-500 hover:bg-white hover:text-teal-700 text-white font-semibold px-7 py-3 rounded-2xl shadow-lg transition-all duration-300 hover:shadow-xl animate-pulse-glow cursor-pointer"
             >
               {t("ctaBook")}

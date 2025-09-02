@@ -46,18 +46,9 @@ export function HeroSection() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center" data-aos="zoom-in" data-aos-delay="200">
             <Button
-              onClick={() => window.open("https://wa.me/96566656024?text=مرحباً، أريد حجز موعد في مستوصف بود الصحي", "_blank")}
+              onClick={() => scrollToSection("services")}
               size="lg"
               className="bg-gradient-to-r from-teal-500 to-green-500 hover:from-teal-600 hover:to-green-600 text-white font-semibold px-8 py-4 rounded-2xl shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105 text-lg"
-            >
-              {t("ctaBook")}
-            </Button>
-
-            <Button
-              onClick={() => scrollToSection("services")}
-              variant="ghost"
-              size="lg"
-              className="text-white border-2 border-white/40 hover:bg-white/20 hover:border-white font-semibold px-8 py-4 rounded-2xl transition-all duration-300 text-lg backdrop-blur-sm"
             >
               <Play className="h-5 w-5 mr-2 rtl:mr-0 rtl:ml-2" />
               {t("ctaServices")}

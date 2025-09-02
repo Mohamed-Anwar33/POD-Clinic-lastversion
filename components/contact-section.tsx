@@ -218,12 +218,12 @@ export function ContactSection() {
                     <div>
                       <h3 className="font-semibold text-gray-900 mb-1">Phone</h3>
                       <a 
-                        href="https://wa.me/96566656024" 
+                        href="https://wa.me/96560002122" 
                         target="_blank" 
                         rel="noopener noreferrer"
                         className="text-gray-600 hover:text-teal-500 transition-colors"
                       >
-                        +965 66656024
+                        +965 60002122
                       </a>
                     </div>
                   </div>
@@ -308,7 +308,7 @@ export function ContactSection() {
                 <div className="text-gray-400 text-sm">
                   <span>مستوصف بود الصحي - السالميه</span>
                   <span className="mx-2">•</span>
-                  <a href="https://wa.me/96566656024" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">+965 66656024</a>
+                  <a href="https://wa.me/96560002122" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">+965 60002122</a>
                   <span className="mx-2">•</span>
                   <a href="mailto:Abdallah_al-sairafi@hotmail.com" className="hover:text-white transition-colors">Abdallah_al-sairafi@hotmail.com</a>
                 </div>

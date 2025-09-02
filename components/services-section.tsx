@@ -74,6 +74,22 @@ export function ServicesSection() {
     return `https://www.youtube.com/embed/${videoId}`
   }
 
+  const getInstagramEmbedUrl = (url: string) => {
+    // Convert standard reel URL to embeddable URL
+    try {
+      const u = new URL(url)
+      // Ensure path ends with /embed
+      const parts = u.pathname.split("/").filter(Boolean)
+      // Expect ["reel", "{id}"]
+      if (parts[0] === "reel" && parts[1]) {
+        return `https://www.instagram.com/reel/${parts[1]}/embed`
+      }
+      return url
+    } catch {
+      return url
+    }
+  }
+
   return (
     <>
       {/* Curved Top Divider */}
@@ -150,12 +166,12 @@ export function ServicesSection() {
       </section>
 
       <Dialog open={!!selectedService} onOpenChange={() => setSelectedService(null)}>
-        <DialogContent className="max-w-[95vw] sm:max-w-[90vw] md:max-w-4xl max-h-[95vh] overflow-y-auto bg-white border-0 shadow-2xl p-0">
+        <DialogContent className="max-w-[96vw] sm:max-w-[90vw] md:max-w-4xl max-h-[92svh] sm:max-h-[95vh] overflow-y-auto overflow-x-hidden bg-white border-0 shadow-2xl p-0 mx-2 rounded-xl sm:rounded-2xl">
           {selectedService && selectedServiceData && (
             <>
               <DialogHeader className="border-b border-gray-100 pb-4 px-4 sm:px-6 pt-4 sm:pt-6 sticky top-0 bg-white z-10">
                 <div className="flex items-start justify-between">
-                  <DialogTitle className="text-xl sm:text-2xl font-bold text-gray-900 mb-2 leading-tight flex-1 pr-4">
+                  <DialogTitle className="text-xl sm:text-2xl font-bold text-gray-900 mb-2 leading-tight flex-1 pr-4 break-words">
                     {selectedServiceData.data.title}
                   </DialogTitle>
                   <button
@@ -171,7 +187,7 @@ export function ServicesSection() {
                 {/* Image Gallery Section */}
                 {images.length > 0 && (
                   <div className="relative">
-                    <div className="relative h-48 sm:h-64 md:h-80 rounded-xl overflow-hidden bg-gray-100 mx-auto">
+                    <div className="relative h-40 sm:h-64 md:h-80 rounded-xl overflow-hidden bg-gray-100 mx-auto">
                       <img
                         src={images[currentImageIndex] || "/placeholder.svg?height=320&width=600"}
                         alt={`${selectedServiceData.data.title} - Image ${currentImageIndex + 1}`}
@@ -212,8 +228,8 @@ export function ServicesSection() {
                   </div>
                 )}
 
-                {/* YouTube Video Section */}
-                {selectedServiceData.data.youtubeUrl && (
+                {/* Video Section (Instagram preferred, YouTube fallback) — hidden for 'complete' package */}
+                {selectedService !== "complete" && (selectedServiceData.data.instagramUrl || selectedServiceData.data.youtubeUrl) && (
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
                       <h4 className="font-semibold text-gray-900 text-sm sm:text-base">{t("watchDemo")}</h4>
@@ -239,13 +255,36 @@ export function ServicesSection() {
                         </div>
                       </button>
                     ) : (
-                      <div className="relative h-48 sm:h-56 md:h-64 lg:h-80 rounded-xl overflow-hidden">
-                        <iframe
-                          src={getYouTubeEmbedUrl(selectedServiceData.data.youtubeUrl)}
-                          className="w-full h-full"
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                          allowFullScreen
-                        />
+                      <div className="w-full flex justify-center">
+                        {selectedServiceData.data.instagramUrl ? (
+                          <div
+                            className="relative rounded-xl overflow-visible mx-auto"
+                            style={{ aspectRatio: "9 / 16", height: "min(66svh, 700px)", maxHeight: "74svh", maxWidth: "96vw", marginTop: "1svh", marginBottom: "1svh" }}
+                          >
+                            <iframe
+                              src={getInstagramEmbedUrl(selectedServiceData.data.instagramUrl)}
+                              className="absolute inset-0 w-full h-full"
+                              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                              frameBorder={0}
+                              scrolling="no"
+                              allowFullScreen
+                            />
+                          </div>
+                        ) : (
+                          <div
+                            className="relative w-full rounded-xl overflow-hidden"
+                            style={{ aspectRatio: "16 / 9", maxWidth: "min(960px, 95vw)" }}
+                          >
+                            <iframe
+                              src={getYouTubeEmbedUrl(selectedServiceData.data.youtubeUrl)}
+                              className="absolute inset-0 w-full h-full"
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                              frameBorder={0}
+                              scrolling="no"
+                              allowFullScreen
+                            />
+                          </div>
+                        )}
                       </div>
                     )}
                   </div>
@@ -298,10 +337,10 @@ export function ServicesSection() {
                 </div>
 
                 {/* CTA Button */}
-                <div className="pt-4 sm:pt-6 border-t border-gray-100 sticky bottom-0 bg-white">
+                <div className="pt-4 sm:pt-6 px-4 sm:px-6 border-t border-gray-100 sticky bottom-0 bg-white" style={{ paddingBottom: "max(env(safe-area-inset-bottom), 12px)" }}>
                   <Button 
-                    onClick={() => window.open(`https://wa.me/96566656024?text=مرحباً، أريد حجز موعد لخدمة ${selectedServiceData.data.title} في مستوصف بود الصحي`, "_blank")}
-                    className="w-full bg-gradient-to-r from-teal-500 to-green-500 hover:from-teal-600 hover:to-green-600 text-white font-semibold py-3 sm:py-4 text-base sm:text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+                    onClick={() => window.open(`https://wa.me/96560002122?text=مرحباً، أريد حجز موعد لخدمة ${selectedServiceData.data.title} في مستوصف بود الصحي`, "_blank")}
+                    className="w-full bg-gradient-to-r from-teal-500 to-green-500 hover:from-teal-600 hover:to-green-600 text-white font-semibold py-3 sm:py-4 px-4 sm:px-6 text-base sm:text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer text-center whitespace-normal break-words leading-snug min-h-[56px]"
                   >
                     {t("ctaBook")} - {selectedServiceData.data.title}
                   </Button>
