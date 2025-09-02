@@ -315,7 +315,7 @@ export function ContactSection() {
               </div>
 
               <div className="border-t border-gray-800 pt-8">
-                <p className="text-gray-400 text-sm">© 2024 POD CLINIC. All rights reserved. | جميع الحقوق محفوظة</p>
+                <p className="text-gray-400 text-sm">© 2024. All rights reserved. | جميع الحقوق محفوظة</p>
               </div>
             </div>
           </div>

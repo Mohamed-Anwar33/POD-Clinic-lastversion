@@ -17,7 +17,7 @@ const cairo = Cairo({
 })
 
 export const metadata = {
-  title: "POD CLINIC - Fitness & Performance Lab | مختبر الأداء البدني",
+  title: "POD CLINIC - Fitness & Performance Lab | مركز الأداء البدني",
   description:
     "Professional fitness testing and performance analysis lab offering VO2max, RMR, and body composition testing.",
   metadataBase: new URL("https://podlabkw.com"),

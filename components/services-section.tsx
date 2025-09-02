@@ -136,11 +136,25 @@ export function ServicesSection() {
                         alt={service.data.title}
                         className="w-full h-full object-contain transition-transform duration-500"
                       />
+                      {service.data.price && (
+                        <div className="absolute top-2 right-2 rtl:right-auto rtl:left-2">
+                          <span className="inline-flex items-center px-3 py-1.5 rounded-full text-base font-bold bg-teal-600 text-white shadow-md">
+                            {t("priceLabel")}: {service.data.price} {t("currency")}
+                          </span>
+                        </div>
+                      )}
                     </div>
 
                     {/* Content */}
                     <div className="p-6">
-                      <h3 className="text-lg font-bold text-gray-900 mb-3 line-clamp-2">{service.data.title}</h3>
+                      <h3 className="text-lg font-bold text-gray-900 mb-2 line-clamp-2">{service.data.title}</h3>
+                      {service.data.price && (
+                        <div className="mb-3">
+                          <span className="inline-flex items-center px-3 py-1.5 rounded-lg text-sm font-semibold bg-teal-100 text-teal-800 border border-teal-300">
+                            {t("priceLabel")}: {service.data.price} {t("currency")}
+                          </span>
+                        </div>
+                      )}
                       <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">{service.data.desc}</p>
 
                       {service.data.bonus && (
@@ -174,6 +188,13 @@ export function ServicesSection() {
                   <DialogTitle className="text-xl sm:text-2xl font-bold text-gray-900 mb-2 leading-tight flex-1 pr-4 break-words">
                     {selectedServiceData.data.title}
                   </DialogTitle>
+                  {selectedServiceData.data.price && (
+                    <div className="flex-shrink-0 mt-1">
+                      <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold bg-teal-50 text-teal-700 border border-teal-200">
+                        {t("priceLabel")}: {selectedServiceData.data.price} {t("currency")}
+                      </span>
+                    </div>
+                  )}
                   <button
                     onClick={() => setSelectedService(null)}
                     className="flex-shrink-0 p-2 hover:bg-gray-100 rounded-full transition-colors duration-200 cursor-pointer"
@@ -339,10 +360,10 @@ export function ServicesSection() {
                 {/* CTA Button */}
                 <div className="pt-4 sm:pt-6 px-4 sm:px-6 border-t border-gray-100 sticky bottom-0 bg-white" style={{ paddingBottom: "max(env(safe-area-inset-bottom), 12px)" }}>
                   <Button 
-                    onClick={() => window.open(`https://wa.me/96560002122?text=مرحباً، أريد حجز موعد لخدمة ${selectedServiceData.data.title} في مستوصف بود الصحي`, "_blank")}
+                    onClick={() => window.open(`https://wa.me/96560002122?text=مرحباً، أريد حجز موعد لخدمة ${selectedServiceData.data.title}${selectedServiceData.data.price ? ` - ${t("priceLabel")}: ${selectedServiceData.data.price} ${t("currency")}` : ''} في مستوصف بود الصحي`, "_blank")}
                     className="w-full bg-gradient-to-r from-teal-500 to-green-500 hover:from-teal-600 hover:to-green-600 text-white font-semibold py-3 sm:py-4 px-4 sm:px-6 text-base sm:text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer text-center whitespace-normal break-words leading-snug min-h-[56px]"
                   >
-                    {t("ctaBook")} - {selectedServiceData.data.title}
+                    {t("ctaBook")} - {selectedServiceData.data.title}{selectedServiceData.data.price ? ` - ${t("priceLabel")}: ${selectedServiceData.data.price} ${t("currency")}` : ""}
                   </Button>
                 </div>
               </div>
