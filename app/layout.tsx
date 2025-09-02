@@ -20,6 +20,10 @@ export const metadata = {
   title: "POD CLINIC - Fitness & Performance Lab | مختبر الأداء البدني",
   description:
     "Professional fitness testing and performance analysis lab offering VO2max, RMR, and body composition testing.",
+  metadataBase: new URL("https://podlabkw.com"),
+  alternates: {
+    canonical: "/",
+  },
   icons: {
     icon: "/assets/logo pod.png",
     shortcut: "/assets/logo pod.png",
@@ -28,6 +32,7 @@ export const metadata = {
   openGraph: {
     title: "POD CLINIC - Fitness & Performance Lab",
     description: "Professional fitness testing and performance analysis lab",
+    url: "/",
     type: "website",
   },
     generator: 'v0.app'
