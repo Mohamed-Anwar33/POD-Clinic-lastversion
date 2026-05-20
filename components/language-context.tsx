@@ -107,6 +107,7 @@ const translations = {
     expert: {
       name: "Dr. Abdullah Al‑Seirfi",
       bio: "Performance assessment & exercise physiology specialist with 1000+ graded tests; lecturer and published contributor in sports nutrition, energy systems, and performance evaluation.",
+      clickToEnlarge: "Click to view full image in high resolution",
     },
     testimonialsTitle: "What Clients Say",
     contactTitle: "Contact Us",
@@ -212,6 +213,7 @@ const translations = {
     expert: {
       name: "د. عبدالله الصيرفي",
       bio: "مختص بتقييم الأداء والاختبارات الفسيولوجية، أجرى 1000+ اختبار جهدي؛ محاضر وناشر في تغذية الرياضيين وأنظمة الطاقة وتقييم الأداء.",
+      clickToEnlarge: "انقر لعرض الصورة الكاملة بالجودة العالية",
     },
     testimonialsTitle: "آراء العملاء",
     contactTitle: "تواصل معنا",

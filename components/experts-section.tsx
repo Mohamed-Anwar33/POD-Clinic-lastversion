@@ -6,6 +6,7 @@ import { useLanguage } from "./language-context"
 export function ExpertsSection() {
   const [isVisible, setIsVisible] = useState(false)
   const [count, setCount] = useState(0)
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false)
   const sectionRef = useRef<HTMLElement>(null)
   const { t } = useLanguage()
 
@@ -97,15 +98,40 @@ export function ExpertsSection() {
                   data-aos="fade-right"
                 >
                   <div className="relative">
-                    <div className="w-64 h-64 mx-auto rounded-full overflow-hidden border-4 border-teal-500 shadow-2xl shadow-teal-500/30">
+                    <div 
+                      className="w-64 h-64 mx-auto rounded-full overflow-hidden border-4 border-teal-500 shadow-2xl shadow-teal-500/30 relative group cursor-pointer"
+                      onClick={() => setIsLightboxOpen(true)}
+                      title={t("expert.clickToEnlarge")}
+                    >
                       <img
-                        src="/assets/dr-abdullah-al-seirfi.jpg"
+                        src="/assets/20240715-Capture0025-optimized.jpg"
                         alt={t("expert.name")}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110"
                         loading="lazy"
                       />
+                      {/* Hover Overlay with Zoom Icon */}
+                      <div className="absolute inset-0 bg-black/45 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <div className="bg-teal-500/90 text-white rounded-full p-3 shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          >
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            <line x1="11" y1="8" x2="11" y2="14"></line>
+                            <line x1="8" y1="11" x2="14" y2="11"></line>
+                          </svg>
+                        </div>
+                      </div>
                     </div>
-                    <div className="absolute -bottom-4 right-0 md:-right-4 bg-teal-500 text-white rounded-full p-4 shadow-lg">
+                    <div className="absolute -bottom-4 right-0 md:-right-4 bg-teal-500 text-white rounded-full p-4 shadow-lg select-none pointer-events-none">
                       <div className="text-center">
                         <div className={`text-2xl font-bold ${isVisible ? "animate-count-up" : ""}`}>{count}+</div>
                         <div className="text-xs">Tests</div>
@@ -139,6 +165,56 @@ export function ExpertsSection() {
           </div>
         </div>
       </section>
+
+      {/* High-Quality Lightbox Modal */}
+      {isLightboxOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-md transition-opacity duration-300 animate-fade-in"
+          onClick={() => setIsLightboxOpen(false)}
+        >
+          <div 
+            className="relative max-w-5xl w-full p-4 md:p-8 flex flex-col items-center justify-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close Button */}
+            <button
+              className="absolute -top-14 right-4 md:right-8 text-white hover:text-teal-400 p-2.5 rounded-full bg-white/10 hover:bg-white/20 transition-all z-50 cursor-pointer"
+              onClick={() => setIsLightboxOpen(false)}
+              aria-label="Close"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+
+            {/* Lightbox Image - Uses original 22MB JPG for full high resolution */}
+            <div className="relative w-full max-h-[80vh] flex justify-center items-center overflow-hidden rounded-xl border border-white/15 shadow-2xl">
+              <img
+                src="/assets/20240715-Capture0025.jpg"
+                alt={t("expert.name")}
+                className="max-w-full max-h-[80vh] object-contain rounded-xl select-none"
+              />
+            </div>
+            
+            {/* Caption */}
+            <div className="mt-4 text-center max-w-2xl px-4 select-none">
+              <h4 className="text-white text-xl font-bold">{t("expert.name")}</h4>
+              <p className="text-gray-400 text-sm mt-1">{t("expert.bio")}</p>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   )
 }
